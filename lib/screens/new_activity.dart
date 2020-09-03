@@ -89,7 +89,7 @@ class _NewActivityState extends State<NewActivity> {
             CheckboxListTile(
               title: Text('Treat?'),
               secondary:
-                  FaIcon(FontAwesomeIcons.cookieBite, color: Colors.blue[400]),
+                  FaIcon(FontAwesomeIcons.cookieBite, color: Colors.pink[200]),
               value: treat,
               onChanged: (value) {
                 treat = value;

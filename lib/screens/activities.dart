@@ -47,8 +47,8 @@ class Activities extends StatelessWidget {
                           FaIcon(FontAwesomeIcons.poo,
                               color: Colors.brown[400]),
                         if (activities[index].treat)
-                          FaIcon(FontAwesomeIcons.cookieBite,
-                              color: Colors.blue[400]),
+                          FaIcon(FontAwesomeIcons.iceCream,
+                              color: Colors.pink[200]),
                         if (activities[index].meal)
                           FaIcon(FontAwesomeIcons.utensils,
                               color: Colors.green[400]),
