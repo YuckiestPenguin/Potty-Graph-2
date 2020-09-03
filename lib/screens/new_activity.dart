@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pottygraph2/providers/activity_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +11,8 @@ class NewActivity extends StatefulWidget {
 class _NewActivityState extends State<NewActivity> {
   bool pee = false;
   bool poo = false;
+  bool treat = false;
+  bool meal = false;
   TextEditingController nameController = TextEditingController();
 
   @override
@@ -22,6 +25,8 @@ class _NewActivityState extends State<NewActivity> {
           Provider.of<ActivityProvider>(context, listen: false);
       activityProvider.changePee(false);
       activityProvider.changePoo(false);
+      activityProvider.changeTreat(false);
+      activityProvider.changeMeal(false);
     });
     super.initState();
   }
@@ -62,6 +67,8 @@ class _NewActivityState extends State<NewActivity> {
             ),
             CheckboxListTile(
               title: Text('Pee?'),
+              secondary:
+                  FaIcon(FontAwesomeIcons.tint, color: Colors.yellow[600]),
               value: pee,
               onChanged: (value) {
                 pee = value;
@@ -71,10 +78,33 @@ class _NewActivityState extends State<NewActivity> {
             ),
             CheckboxListTile(
               title: Text('Poo?'),
+              secondary: FaIcon(FontAwesomeIcons.poo, color: Colors.brown[400]),
               value: poo,
               onChanged: (value) {
                 poo = value;
                 activityProvider.changePoo(value);
+                setState(() {});
+              },
+            ),
+            CheckboxListTile(
+              title: Text('Treat?'),
+              secondary:
+                  FaIcon(FontAwesomeIcons.cookieBite, color: Colors.blue[400]),
+              value: treat,
+              onChanged: (value) {
+                treat = value;
+                activityProvider.changeTreat(value);
+                setState(() {});
+              },
+            ),
+            CheckboxListTile(
+              title: Text('Meal?'),
+              secondary:
+                  FaIcon(FontAwesomeIcons.utensils, color: Colors.green[400]),
+              value: meal,
+              onChanged: (value) {
+                meal = value;
+                activityProvider.changeMeal(value);
                 setState(() {});
               },
             ),

@@ -9,10 +9,14 @@ class ActivityProvider extends ChangeNotifier {
   String _name;
   bool _pee;
   bool _poo;
+  bool _treat;
+  bool _meal;
 
   String get name => _name;
-  bool get peepee => _pee;
-  bool get poopoo => _poo;
+  bool get pee => _pee;
+  bool get poo => _poo;
+  bool get treat => _treat;
+  bool get meal => _meal;
 
   changeName(String value) {
     _name = value;
@@ -29,13 +33,26 @@ class ActivityProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  changeTreat(bool value) {
+    _treat = value;
+    notifyListeners();
+  }
+
+  changeMeal(bool value) {
+    _meal = value;
+    notifyListeners();
+  }
+
   saveActivity() {
     var newActivity = Activity(
-        name: _name,
-        activityId: Uuid().v4(),
-        activityTimestamp: Timestamp.now(),
-        pee: _pee,
-        poo: _poo);
+      name: _name,
+      activityId: Uuid().v4(),
+      activityTimestamp: Timestamp.now(),
+      pee: _pee,
+      poo: _poo,
+      treat: _treat,
+      meal: _meal,
+    );
 
     firestoreService.saveActivity(newActivity);
   }

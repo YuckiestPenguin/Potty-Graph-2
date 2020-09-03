@@ -15,7 +15,7 @@ class Activities extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Activities'),
+        title: Text('Activity Log'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
@@ -36,17 +36,22 @@ class Activities extends StatelessWidget {
                 return Card(
                   elevation: 3,
                   child: ListTile(
-                    leading: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    leading: Wrap(
+                      spacing: 2,
+                      crossAxisAlignment: WrapCrossAlignment.center,
                       children: <Widget>[
                         if (activities[index].pee)
-                          FaIcon(
-                            FontAwesomeIcons.tint,
-                            color: Colors.yellow[600],
-                          ),
+                          FaIcon(FontAwesomeIcons.tint,
+                              color: Colors.yellow[600]),
                         if (activities[index].poo)
                           FaIcon(FontAwesomeIcons.poo,
                               color: Colors.brown[400]),
+                        if (activities[index].treat)
+                          FaIcon(FontAwesomeIcons.cookieBite,
+                              color: Colors.blue[400]),
+                        if (activities[index].meal)
+                          FaIcon(FontAwesomeIcons.utensils,
+                              color: Colors.green[400]),
                       ],
                     ),
                     title: activities[index].name != null

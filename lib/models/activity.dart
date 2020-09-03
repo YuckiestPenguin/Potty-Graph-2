@@ -6,13 +6,17 @@ class Activity {
   final Timestamp activityTimestamp;
   final bool pee;
   final bool poo;
+  final bool meal;
+  final bool treat;
 
   Activity(
       {this.name,
       this.activityId,
       this.activityTimestamp,
       this.pee,
-      this.poo});
+      this.poo,
+      this.meal,
+      this.treat});
 
   Map<String, dynamic> toMap() {
     return {
@@ -20,7 +24,9 @@ class Activity {
       'name': name,
       'activityTimestamp': activityTimestamp,
       'pee': pee,
-      'poo': poo
+      'poo': poo,
+      'treat': treat,
+      'meal': meal
     };
   }
 
@@ -29,5 +35,7 @@ class Activity {
         activityTimestamp = firestore['activityTimestamp'],
         name = firestore['name'],
         pee = firestore['pee'],
-        poo = firestore['poo'];
+        poo = firestore['poo'],
+        treat = firestore['treat'],
+        meal = firestore['meal'];
 }
