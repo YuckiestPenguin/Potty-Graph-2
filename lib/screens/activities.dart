@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pottygraph2/models/activity.dart';
 import 'package:pottygraph2/screens/new_activity.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +36,19 @@ class Activities extends StatelessWidget {
                 return Card(
                   elevation: 3,
                   child: ListTile(
+                    leading: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        if (activities[index].pee)
+                          FaIcon(
+                            FontAwesomeIcons.tint,
+                            color: Colors.yellow[600],
+                          ),
+                        if (activities[index].poo)
+                          FaIcon(FontAwesomeIcons.poo,
+                              color: Colors.brown[400]),
+                      ],
+                    ),
                     title: activities[index].name != null
                         ? Text(activities[index].name)
                         : Text('Description not available',
