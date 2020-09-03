@@ -4,6 +4,7 @@ import 'package:pottygraph2/screens/new_activity.dart';
 import 'package:provider/provider.dart';
 import '../models/activity.dart';
 import '../providers/activity_provider.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class Activities extends StatelessWidget {
   @override
@@ -33,6 +34,8 @@ class Activities extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: Text(activities[index].name),
+                    subtitle: Text(timeago.format(DateTime.tryParse(activities[index].activityTimestamp.toDate().toString())).toString()),
+                    // subtitle: Text(activities[index].activityTimestamp.toDate().toString()),
                     trailing: IconButton(
                       color: Colors.red[300],
                       icon: Icon(Icons.delete),

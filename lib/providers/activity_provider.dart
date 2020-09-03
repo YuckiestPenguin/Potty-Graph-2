@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pottygraph2/models/activity.dart';
 import 'package:pottygraph2/services/firestore_service.dart';
@@ -15,7 +16,7 @@ class ActivityProvider extends ChangeNotifier {
   }
 
   saveActivity() {
-    var newActivity = Activity(name: _name, activityId: Uuid().v4());
+    var newActivity = Activity(name: _name, activityId: Uuid().v4(), activityTimestamp: Timestamp.now());
 
     firestoreService.saveActivity(newActivity);
   }

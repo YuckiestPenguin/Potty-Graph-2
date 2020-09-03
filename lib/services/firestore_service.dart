@@ -12,7 +12,7 @@ class FirestoreService {
   }
 
   Stream<List<Activity>> getActivities() {
-    return _db.collection('activities').snapshots().map((snapshot) => snapshot
+    return _db.collection("activities").orderBy('activityTimestamp', descending: true).snapshots().map((snapshot) => snapshot
         .docs
         .map((document) => Activity.fromFirestore(document.data()))
         .toList());
