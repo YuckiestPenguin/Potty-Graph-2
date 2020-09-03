@@ -9,7 +9,7 @@ class Activities extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final activities = Provider.of<List<Activity>>(context);
-        final activityProvider = Provider.of<ActivityProvider>(context);
+    final activityProvider = Provider.of<ActivityProvider>(context);
 
     return Scaffold(
         appBar: AppBar(
@@ -27,7 +27,7 @@ class Activities extends StatelessWidget {
             )
           ],
         ),
-        body: (activities != null)
+        body: (activities != null && activities.length > 0)
             ? ListView.builder(
                 itemCount: activities.length,
                 itemBuilder: (context, index) {
@@ -37,11 +37,12 @@ class Activities extends StatelessWidget {
                       color: Colors.red[300],
                       icon: Icon(Icons.delete),
                       onPressed: () {
-                        activityProvider.deleteActivity(activities[index].activityId);
+                        activityProvider
+                            .deleteActivity(activities[index].activityId);
                       },
                     ),
                   );
                 })
-            : Container());
+            : Center(child: Text('Nothing Here!')));
   }
 }
