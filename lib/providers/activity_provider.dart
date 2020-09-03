@@ -7,16 +7,35 @@ import 'package:uuid/uuid.dart';
 class ActivityProvider extends ChangeNotifier {
   final firestoreService = FirestoreService();
   String _name;
+  bool _pee;
+  bool _poo;
 
   String get name => _name;
+  bool get peepee => _pee;
+  bool get poopoo => _poo;
 
   changeName(String value) {
     _name = value;
     notifyListeners();
   }
 
+  changePee(bool value) {
+    _pee = value;
+    notifyListeners();
+  }
+
+  changePoo(bool value) {
+    _poo = value;
+    notifyListeners();
+  }
+
   saveActivity() {
-    var newActivity = Activity(name: _name, activityId: Uuid().v4(), activityTimestamp: Timestamp.now());
+    var newActivity = Activity(
+        name: _name,
+        activityId: Uuid().v4(),
+        activityTimestamp: Timestamp.now(),
+        pee: _pee,
+        poo: _poo);
 
     firestoreService.saveActivity(newActivity);
   }

@@ -13,39 +13,47 @@ class Activities extends StatelessWidget {
     final activityProvider = Provider.of<ActivityProvider>(context);
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Activities'),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => NewActivity(),
+      appBar: AppBar(
+        title: Text('Activities'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => NewActivity(),
+                ),
+              );
+            },
+          )
+        ],
+      ),
+      body: (activities != null && activities.length > 0)
+          ? ListView.builder(
+              itemCount: activities.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: activities[index].name != null
+                      ? Text(activities[index].name)
+                      : Text('Description not available',
+                          style: TextStyle(fontStyle: FontStyle.italic)),
+                  subtitle: Text(timeago
+                      .format(DateTime.tryParse(activities[index]
+                          .activityTimestamp
+                          .toDate()
+                          .toString()))
+                      .toString()),
+                  trailing: IconButton(
+                    color: Colors.red[300],
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      activityProvider
+                          .deleteActivity(activities[index].activityId);
+                    },
                   ),
                 );
-              },
-            )
-          ],
-        ),
-        body: (activities != null && activities.length > 0)
-            ? ListView.builder(
-                itemCount: activities.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(activities[index].name),
-                    subtitle: Text(timeago.format(DateTime.tryParse(activities[index].activityTimestamp.toDate().toString())).toString()),
-                    // subtitle: Text(activities[index].activityTimestamp.toDate().toString()),
-                    trailing: IconButton(
-                      color: Colors.red[300],
-                      icon: Icon(Icons.delete),
-                      onPressed: () {
-                        activityProvider
-                            .deleteActivity(activities[index].activityId);
-                      },
-                    ),
-                  );
-                })
-            : Center(child: Text('Nothing Here!')));
+              })
+          : Center(child: Text('Nothing Here!')),
+    );
   }
 }
