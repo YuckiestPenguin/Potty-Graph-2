@@ -32,24 +32,27 @@ class Activities extends StatelessWidget {
           ? ListView.builder(
               itemCount: activities.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: activities[index].name != null
-                      ? Text(activities[index].name)
-                      : Text('Description not available',
-                          style: TextStyle(fontStyle: FontStyle.italic)),
-                  subtitle: Text(timeago
-                      .format(DateTime.tryParse(activities[index]
-                          .activityTimestamp
-                          .toDate()
-                          .toString()))
-                      .toString()),
-                  trailing: IconButton(
-                    color: Colors.red[300],
-                    icon: Icon(Icons.delete),
-                    onPressed: () {
-                      activityProvider
-                          .deleteActivity(activities[index].activityId);
-                    },
+                return Card(
+                  elevation: 3,
+                  child: ListTile(
+                    title: activities[index].name != null
+                        ? Text(activities[index].name)
+                        : Text('Description not available',
+                            style: TextStyle(fontStyle: FontStyle.italic)),
+                    subtitle: Text(timeago
+                        .format(DateTime.tryParse(activities[index]
+                            .activityTimestamp
+                            .toDate()
+                            .toString()))
+                        .toString()),
+                    trailing: IconButton(
+                      color: Colors.red[300],
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        activityProvider
+                            .deleteActivity(activities[index].activityId);
+                      },
+                    ),
                   ),
                 );
               })
