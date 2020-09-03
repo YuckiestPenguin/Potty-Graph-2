@@ -32,7 +32,7 @@ class Activities extends StatelessWidget {
                 itemCount: activities.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text('afs'),
+                    title: Text(activities[index].name),
                     trailing: IconButton(
                       color: Colors.red[300],
                       icon: Icon(Icons.delete),
